@@ -105,7 +105,7 @@ left, right = st.columns(2)
 with left:
     st.markdown('<div class="section-title">📝 1. YOUR INPUTS</div>', unsafe_allow_html=True)
     st.markdown("### ELECTRICITY CONSUMPTION")
-    kwh = st.number_input("Monthly electricity consumption (kWh)", min_value=0.1, value=float(DEFAULT_KWH), step=1.0)
+    kwh = st.number_input("Monthly electricity consumption/Units Used (kWh)", min_value=0.1, value=float(DEFAULT_KWH), step=1.0)
     fuel_rate = st.number_input("Fuel surcharge (EC$/kWh)", min_value=0.0, value=float(DEFAULT_FUEL_SURCHARGE), step=0.01, format="%.4f")
 
 with right:
@@ -113,7 +113,7 @@ with right:
     solar_export = st.number_input("Solar PV electricity sold to the utility (kWh)", min_value=0.0, value=float(DEFAULT_SOLAR_EXPORT), step=1.0)
     fit = st.number_input("Solar PV Feed-in Tariff (EC$/kWh)", min_value=0.0, value=float(DEFAULT_FIT), step=0.01, format="%.2f")
 
-st.markdown(f"""<div class="green-note"><strong>☀️ FIT (Feed-in Tariff)</strong> is the rate paid by the utility for electricity exported to the grid. Current default: <strong>EC${fit:.2f}/kWh</strong>.</div>""", unsafe_allow_html=True)
+st.markdown(f"""<div class="green-note"><strong>☀️ Solar FIT (Feed-in Tariff)</strong> is the rate paid by the utility for electricity exported to the grid. Current default: <strong>EC${fit:.2f}/kWh</strong>.</div>""", unsafe_allow_html=True)
 bill = calculate_bill(kwh, fuel_rate, solar_export, fit)
 
 st.markdown('<div class="section-title">🧾 2. YOUR ESTIMATED BILL (BEFORE SOLAR CREDIT)</div>', unsafe_allow_html=True)
@@ -138,7 +138,7 @@ c.metric("FIT Credit", money(bill["solar_credit"]))
 st.markdown("### Bill Breakdown")
 st.bar_chart({"Basic Energy Charge": bill["energy_charge"], "Fuel Surcharge": bill["fuel_charge"], "VAT": bill["vat"]})
 
-st.markdown('<div class="section-title">📋 5. RESIDENTIAL TARIFF & SOLAR FIT</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-title">📋 4. RESIDENTIAL TARIFF & SOLAR FIT</div>', unsafe_allow_html=True)
 a,b,c,d = st.columns(4)
 a.metric("Below 50 kWh", "EC$0.425/kWh")
 b.metric("50 kWh and above", "EC$0.500/kWh")
@@ -146,7 +146,7 @@ c.metric("VAT", "16%")
 d.metric("Solar PV FIT", "EC$0.45/kWh")
 st.write("VAT is applied to the energy charge attributable to consumption above the first 250 kWh.")
 
-st.markdown('<div class="section-title">🌿 6. SAVE BY USING LESS ENERGY</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-title">🌿 5. SAVE BY USING LESS ENERGY</div>', unsafe_allow_html=True)
 for pct in [10,20,30]:
     reduced = kwh * (1 - pct/100)
     rb = calculate_bill(reduced, fuel_rate, solar_export, fit)
@@ -154,6 +154,6 @@ for pct in [10,20,30]:
     st.write(f"**{pct}% reduction:** {reduced:,.1f} kWh → estimated saving of **{money(savings)}**")
 
 st.divider()
-st.markdown('<div class="footer">Energy Unit | Ministry of Energy | Saint Vincent and the Grenadines<br>This is an estimate for information purposes only.</div>', unsafe_allow_html=True)
+st.markdown('<div class="footer">Energy Unit | Government of St. Vincent & the Grenadines | Saint Vincent and the Grenadines<br>This is an estimate for information purposes only.</div>', unsafe_allow_html=True)
 
 st.warning("This calculator is an educational/illustrative tool. Confirm the applicable tariff, monthly fuel surcharge, Solar PV FIT and tax rules for the relevant billing period before using the result for an official bill.")
