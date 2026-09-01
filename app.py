@@ -6,7 +6,7 @@ import streamlit as st
 # Energy Unit - Government of Saint Vincent and the Grenadines
 # ============================================================
 
-DEFAULT_KWH = 299
+DEFAULT_KWH = 100
 DEFAULT_FUEL_SURCHARGE = 0.7355
 DEFAULT_SOLAR_EXPORT = 100.0
 DEFAULT_FIT = 0.45
@@ -514,7 +514,7 @@ with left:
         st.markdown("### ELECTRICITY CONSUMPTION")
 
         kwh = st.number_input(
-            "Monthly consumption/ Units Used (kWh)",
+            "Monthly consumption/Units Used (kWh)",
             min_value=0.1,
             value=DEFAULT_KWH,
             step=1.0,
