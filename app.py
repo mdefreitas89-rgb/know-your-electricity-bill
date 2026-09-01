@@ -89,30 +89,6 @@ st.markdown("""
 div.stButton > button { width:100%; background:#078a2f; color:white; border:none; border-radius:9px; font-weight:800; padding:.7rem; }
 [data-testid="stMetricValue"] { color:#075b1d; }
 .footer { background:#064d19; color:white; border-radius:10px; padding:12px; text-align:center; margin-top:20px; }
-
-/* AUTOMATIC DARK MODE ONLY - original light-mode design unchanged */
-@media (prefers-color-scheme: dark) {
-.stApp { background:#101810; color:#f2f6f1; }
-[data-testid="stHeader"] { background:#064d19; }
-.hero { background:linear-gradient(110deg,#064d19,#08752a); color:white; }
-.hero h1,.hero p { color:white; }
-.section-title { background:#08752a; color:white; }
-.result-card { background:linear-gradient(135deg,#19351f,#214426); border-color:#397344; color:#f2f6f1; }
-.result-label { color:#a7d9aa; }
-.result-value { color:#7ed889; }
-.green-note { background:#19351f; border-left-color:#159447; color:#e7f3e8; }
-.reminder { background:#064d19; color:white; }
-.reminder h4 { color:white; }
-.footer { background:#043d14; color:white; }
-[data-testid="stMetricValue"] { color:#7ed889; }
-[data-testid="stMetricLabel"] { color:#d7e5d8; }
-.stNumberInput label,.stSelectbox label,.stTextInput label,.stMarkdown,.stText,p { color:#eef5ef !important; }
-input,textarea { background-color:#182219 !important; color:#f2f6f1 !important; border-color:#315a37 !important; }
-div.stButton > button { background:#078a2f; color:white; }
-div.stButton > button:hover { background:#056e25; color:white; }
-[data-testid="stAlert"] { background:#19351f; color:#f2f6f1; }
-}
-
 </style>
 """, unsafe_allow_html=True)
 
