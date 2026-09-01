@@ -3,10 +3,10 @@ import streamlit as st
 
 # ============================================================
 # KNOW YOUR ELECTRICITY BILL
-# Energy Unit - Government of Saint Vincent and the Grenadines
+# Energy Unit - Saint Vincent and the Grenadines
 # ============================================================
 
-DEFAULT_KWH = 100
+DEFAULT_KWH = 299.0
 DEFAULT_FUEL_SURCHARGE = 0.7355
 DEFAULT_SOLAR_EXPORT = 100.0
 DEFAULT_FIT = 0.45
@@ -514,7 +514,7 @@ with left:
         st.markdown("### ELECTRICITY CONSUMPTION")
 
         kwh = st.number_input(
-            "Monthly consumption/Units Used (kWh)",
+            "Monthly consumption (kWh)",
             min_value=0.1,
             value=DEFAULT_KWH,
             step=1.0,
@@ -770,7 +770,7 @@ for column, pct in zip(save_cols, [10, 20, 30]):
 st.markdown(
     """
     <div class="footer">
-        Energy Unit | Government of Saint Vincent and the Grenadines
+        Energy Unit | Ministry of Energy, Saint Vincent and the Grenadines
         <span style="float:right;">This is an estimate for information purposes only.</span>
     </div>
     """,
@@ -782,3 +782,5 @@ st.warning(
     "applicable tariff, monthly fuel surcharge, Solar PV FIT and tax rules "
     "for the relevant billing period before using the result for an official bill."
 )
+
+      
