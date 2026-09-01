@@ -1,5 +1,5 @@
 from pathlib import Path
-DEFAULT_KWH = 000
+DEFAULT_KWH = 100
 DEFAULT_FUEL_SURCHARGE = 0.7355
 DEFAULT_SOLAR_EXPORT = 0.0
 DEFAULT_FIT = 0.45  # EC$0.45/kWh = 45 cents/kWh sold to the utility
