@@ -101,7 +101,7 @@ with hero_left:
 with hero_right:
     st.markdown("""<div class="hero"><h1>KNOW YOUR ELECTRICITY BILL</h1><p><strong>Saint Vincent and the Grenadines</strong></p><p>Estimate your residential electricity bill and explore the benefits of Solar PV.</p></div>""", unsafe_allow_html=True)
 
-st.markdown('<div class="section-title">📋 RESIDENTIAL TARIFF & SOLAR FIT</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-title">📋 1. RESIDENTIAL TARIFF & SOLAR FIT</div>', unsafe_allow_html=True)
 a,b,c,d = st.columns(4)
 a.metric("Below 50 kWh", "EC$0.425/kWh")
 b.metric("50 kWh and above", "EC$0.500/kWh")
@@ -111,7 +111,7 @@ st.write("VAT is applied to the energy charge attributable to consumption above 
 
 left, right = st.columns(2)
 with left:
-    st.markdown('<div class="section-title">📝 1. YOUR INPUTS</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">📝 2. YOUR INPUTS</div>', unsafe_allow_html=True)
     st.markdown("### ELECTRICITY CONSUMPTION")
     kwh = st.number_input("Monthly electricity consumption/Units Used (kWh)", min_value=0.1, value=float(DEFAULT_KWH), step=1.0)
     fuel_rate = st.number_input("Fuel surcharge (EC$/kWh)", min_value=0.0, value=float(DEFAULT_FUEL_SURCHARGE), step=0.01, format="%.4f")
@@ -124,7 +124,7 @@ with right:
 st.markdown(f"""<div class="green-note"><strong>☀️ Solar FIT (Feed-in Tariff)</strong> is the rate paid by the utility for electricity exported to the grid. Current default: <strong>EC${fit:.2f}/kWh</strong>.</div>""", unsafe_allow_html=True)
 bill = calculate_bill(kwh, fuel_rate, solar_export, fit)
 
-st.markdown('<div class="section-title">🧾 2. YOUR ESTIMATED BILL (BEFORE SOLAR CREDIT)</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-title">🧾 3. YOUR ESTIMATED BILL (BEFORE SOLAR CREDIT)</div>', unsafe_allow_html=True)
 a,b,c,d = st.columns(4)
 a.metric("Energy Charge", money(bill["energy_charge"]))
 b.metric("Fuel Surcharge", money(bill["fuel_charge"]))
@@ -137,16 +137,16 @@ b.metric("Solar FIT Credit", f"- {money(bill['solar_credit'])}")
 st.markdown(f"""<div class="result-card"><div class="result-label">ESTIMATED BILL PAYABLE</div><div class="result-value">{money(bill["total"])}</div><div>Gross bill {money(bill["gross_total"])} &nbsp;−&nbsp; Solar FIT credit {money(bill["solar_credit"])}</div></div>""", unsafe_allow_html=True)
 st.caption(f"Effective cost: EC${bill['effective_rate']:.4f} per kWh")
 
-st.markdown('<div class="section-title"> 📊 3. BILL BREAKDOWN </div>', unsafe_allow_html=True)
+st.markdown('<div class="section-title"> 📊 4. BILL BREAKDOWN </div>', unsafe_allow_html=True)
 st.bar_chart({"Basic Energy Charge": bill["energy_charge"], "Fuel Surcharge": bill["fuel_charge"], "VAT": bill["vat"]})
 
-st.markdown('<div class="section-title">☀️ 4. SOLAR PV CREDIT</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-title">☀️ 5. SOLAR PV CREDIT</div>', unsafe_allow_html=True)
 a,b,c = st.columns(3)
 a.metric("Electricity Sold", f"{solar_export:,.1f} kWh")
 b.metric("FIT", f"EC${fit:.2f} / kWh")
 c.metric("FIT Credit", money(bill["solar_credit"]))
 
-st.markdown('<div class="section-title">🌿 5. SAVE BY USING LESS ENERGY</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-title">🌿 6. SAVE BY USING LESS ENERGY</div>', unsafe_allow_html=True)
 for pct in [10,20,30]:
     reduced = kwh * (1 - pct/100)
     rb = calculate_bill(reduced, fuel_rate, solar_export, fit)
