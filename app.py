@@ -116,6 +116,14 @@ with right:
 st.markdown(f"""<div class="green-note"><strong>☀️ Solar FIT (Feed-in Tariff)</strong> is the rate paid by the utility for electricity exported to the grid. Current default: <strong>EC${fit:.2f}/kWh</strong>.</div>""", unsafe_allow_html=True)
 bill = calculate_bill(kwh, fuel_rate, solar_export, fit)
 
+st.markdown('<div class="section-title">📋 RESIDENTIAL TARIFF & SOLAR FIT</div>', unsafe_allow_html=True)
+a,b,c,d = st.columns(4)
+a.metric("Below 50 kWh", "EC$0.425/kWh")
+b.metric("50 kWh and above", "EC$0.500/kWh")
+c.metric("VAT", "16%")
+d.metric("Solar PV FIT", "EC$0.45/kWh")
+st.write("VAT is applied to the energy charge attributable to consumption above the first 250 kWh.")
+
 st.markdown('<div class="section-title">🧾 2. YOUR ESTIMATED BILL (BEFORE SOLAR CREDIT)</div>', unsafe_allow_html=True)
 a,b,c,d = st.columns(4)
 a.metric("Energy Charge", money(bill["energy_charge"]))
@@ -137,14 +145,6 @@ a,b,c = st.columns(3)
 a.metric("Electricity Sold", f"{solar_export:,.1f} kWh")
 b.metric("FIT", f"EC${fit:.2f} / kWh")
 c.metric("FIT Credit", money(bill["solar_credit"]))
-
-st.markdown('<div class="section-title">📋 4. RESIDENTIAL TARIFF & SOLAR FIT</div>', unsafe_allow_html=True)
-a,b,c,d = st.columns(4)
-a.metric("Below 50 kWh", "EC$0.425/kWh")
-b.metric("50 kWh and above", "EC$0.500/kWh")
-c.metric("VAT", "16%")
-d.metric("Solar PV FIT", "EC$0.45/kWh")
-st.write("VAT is applied to the energy charge attributable to consumption above the first 250 kWh.")
 
 st.markdown('<div class="section-title">🌿 5. SAVE BY USING LESS ENERGY</div>', unsafe_allow_html=True)
 for pct in [10,20,30]:
