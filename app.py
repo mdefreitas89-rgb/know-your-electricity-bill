@@ -129,14 +129,14 @@ b.metric("Solar FIT Credit", f"- {money(bill['solar_credit'])}")
 st.markdown(f"""<div class="result-card"><div class="result-label">ESTIMATED BILL PAYABLE</div><div class="result-value">{money(bill["total"])}</div><div>Gross bill {money(bill["gross_total"])} &nbsp;−&nbsp; Solar FIT credit {money(bill["solar_credit"])}</div></div>""", unsafe_allow_html=True)
 st.caption(f"Effective cost: EC${bill['effective_rate']:.4f} per kWh")
 
+st.markdown("### Bill Breakdown")
+st.bar_chart({"Basic Energy Charge": bill["energy_charge"], "Fuel Surcharge": bill["fuel_charge"], "VAT": bill["vat"]})
+
 st.markdown('<div class="section-title">☀️ 3. SOLAR PV CREDIT</div>', unsafe_allow_html=True)
 a,b,c = st.columns(3)
 a.metric("Electricity Sold", f"{solar_export:,.1f} kWh")
 b.metric("FIT", f"EC${fit:.2f} / kWh")
 c.metric("FIT Credit", money(bill["solar_credit"]))
-
-st.markdown("### Bill Breakdown")
-st.bar_chart({"Basic Energy Charge": bill["energy_charge"], "Fuel Surcharge": bill["fuel_charge"], "VAT": bill["vat"]})
 
 st.markdown('<div class="section-title">📋 4. RESIDENTIAL TARIFF & SOLAR FIT</div>', unsafe_allow_html=True)
 a,b,c,d = st.columns(4)
